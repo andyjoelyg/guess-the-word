@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  --black: #0c0c0c;
+  --light-gray: #e9e9e9;
+  --gray: #c5ccce;
+  --dark-gray: #787c7e;
+  --green: #6aaa64;
+  --yellow: #c9b458;
+  --cyan: #90caf9;
+  --white: #ffffff;
+  --grid-gap: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline-width: 0;
+  vertical-align: baseline;
+  color: var(--black);
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes letter-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flipcard {
+  0% {
+    transform: scaleY(1);
+    background-color: var(--white);
+    border: 2px solid var(--gray);
+  }
+
+  50% {
+    transform: scaleY(0);
+    background-color: var(--white);
+    border: 2px solid var(--gray);
+  }
+
+  100% {
+    transform: scaleY(1)
+  }
+}
+
+.main-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--grid-gap);
+
+  .grid__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--grid-gap);
+
+    .row__cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 60px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid var(--gray);
+      background-color: var(--white);
+
+      .cell__letter {
+        font-size: 24px;
+        font-weight: 700;
+
+        &:not(:empty) {
+          animation: letter-animation 0.2s ease-in-out;
+        }
+      }
+
+    }
+
+    .row__cell--selected {
+      border: 2px solid var(--cyan);
+    }
+
+    .row__cell--guessed {
+      background-color: var(--green);
+    }
+
+    .row__cell--half-guessed {
+      background-color: var(--yellow);
+    }
+
+    .row__cell--wrong {
+      background-color: var(--dark-gray);
+    }
+
+    .row__cell--guessed,
+    .row__cell--half-guessed,
+    .row__cell--wrong {
+      border: none;
+      animation: flipcard 0.3s ease-in-out;
+
+      .cell__letter {
+        color: var(--white);
+      }
+    }
+  }
+}
+
+
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 50px;
+
+  .keyboard__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .keyboard__key {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      padding: 10px;
+      font-size: 18px;
+      background-color: var(--light-gray);
+      border-radius: 5px;
+      height: 50px;
+      width: 45px;
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+
+    .keyboard__key--enter,
+    .keyboard__key--backspace {
+      width: 65px;
+    }
+
+    .keyboard__key__backspace {
+      height: 100%;
+    }
+
+    .keyboard__key--guessed,
+    .keyboard__key--half-guessed,
+    .keyboard__key--wrong {
+      color: white;
+
+      &:hover {
+        filter: brightness(1.2);
+      }
+    }
+
+    .keyboard__key--guessed {
+      background-color: var(--green);
+    }
+
+    .keyboard__key--half-guessed {
+      background-color: var(--yellow);
+
+      &:hover {
+        filter: brightness(1.15);
+      }
+    }
+
+    .keyboard__key--wrong {
+      background-color: var(--dark-gray);
+    }
+
+
+  }
+}
