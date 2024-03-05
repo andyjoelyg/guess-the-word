@@ -1,14 +1,16 @@
-# guess-the-word-vue
+# guess-the-word-vue (ESPAÑOL)
 
-This template should help get you started developing with Vue 3 in Vite.
+Juego en línea que consiste en adivinar una palabra. Desarrollado en Vue 3 Composition API.
+Se puede crear enlaces con palabras personalizadas.
+
+# guess-the-word-vue (ENGLISH)
+
+Online game that consists of guessing a word. Developed in Vue 3 Composition API.
+You can create links with custom words
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
 
 ## Project Setup
 
