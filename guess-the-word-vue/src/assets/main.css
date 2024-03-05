@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 
+a {
+  color: var(--black);
+}
+
 body {
   position: fixed;
   width: 100%;
@@ -85,6 +89,43 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
+}
+
+/*Header styles*/
+
+.c-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 10px;
+  width: 100%;
+  border-bottom: var(--gray) 1px solid;
+}
+
+.c-header__title {
+  font-size: 22px;
+}
+
+.c-header__options {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 20px;
+}
+
+.c-header__option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.c-header__option:hover {
+  background-color: var(--light-gray);
 }
 
 /*Game grid styles*/
