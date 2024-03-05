@@ -7,6 +7,7 @@ const props = defineProps({
   wordInput: String,
   gridState: String
 })
+const emits = defineEmits(['row-completed'])
 const LETTERS_STATES = {
   GUESSED: 2,
   HALF_GUESSED: 1,
@@ -39,15 +40,18 @@ watch(
     if (props.gridState === 'completed') {
       checkLetters()
     }
-
-    for (let letterIndex = 0; letterIndex < props.wordToGuess.length; letterIndex++) {
-      cellClasses.value[letterIndex] = updateCellClasses(letterIndex)
-    }
+    updateAllCellClasses()
   },
   { immediate: true }
 )
 
-function updateCellClasses(letterIndex) {
+function updateAllCellClasses() {
+  for (let letterIndex = 0; letterIndex < props.wordToGuess.length; letterIndex++) {
+    cellClasses.value[letterIndex] = updateCellClass(letterIndex)
+  }
+}
+
+function updateCellClass(letterIndex) {
   if (props.gridState === 'inactive') {
     return
   }
@@ -62,18 +66,23 @@ function updateCellClasses(letterIndex) {
 
   if (props.gridState === 'completed') {
     setTimeout(() => {
-      updateCellClassesCompleted(letterIndex)
+      updateCellClassCompleted(letterIndex)
     }, letterIndex * 150)
   }
 }
 
-function updateCellClassesCompleted(letterIndex) {
+function updateCellClassCompleted(letterIndex) {
   if (letterStates.value[letterIndex] === LETTERS_STATES.GUESSED) {
     cellClasses.value[letterIndex] = 'row__cell--guessed'
   } else if (letterStates.value[letterIndex] === LETTERS_STATES.HALF_GUESSED) {
     cellClasses.value[letterIndex] = 'row__cell--half-guessed'
   } else {
     cellClasses.value[letterIndex] = 'row__cell--wrong'
+  }
+
+  if (letterIndex === props.wordToGuess.length - 1) {
+    let wordGuessed = letterStates.value.every((letterState) => letterState === 2)
+    emits('row-completed', wordGuessed)
   }
 }
 
